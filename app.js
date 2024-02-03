@@ -18,7 +18,7 @@ db.once('open', () => {
 app.use(cors()); // Use cors middleware
 
 // Routes
-app.use('/comments', commentRoute);
+app.use('/api', commentRoute);
 
 // Start the server
 app.listen(port, () => {
