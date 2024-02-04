@@ -1,6 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const commentRoute = require('./routes/commentRoute');
+const indexRoute = require('./routes/index.js');
 const app = express();
 const port = process.env.PORT || 3001;
 const cors = require('cors');
@@ -16,11 +16,14 @@ db.once('open', () => {
 });
 
 app.use(cors()); // Use cors middleware
+app.use(express.json()); // Use express.json() middleware
 
 // Routes
-app.use('/api', commentRoute);
+app.use('/api', indexRoute);
 
 // Start the server
 app.listen(port, () => {
   console.log(`Microservice listening at http://localhost:${port}`);
 });
+
+app.use(express.json()); 

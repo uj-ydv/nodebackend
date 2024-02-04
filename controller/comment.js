@@ -1,8 +1,8 @@
-import Comment from '../models/comment.js';
+const Comment = require('../models/comment.js');
 
 
 // Get all comments
-export const getAllComments = async (req, res) => {
+const getAllComments = async (req, res) => {
     try {
         const comments = await Comment.find();
         res.json(comments);
@@ -13,7 +13,7 @@ export const getAllComments = async (req, res) => {
 
 
 // Create a new comment
-export const createComment = async (req, res) => {
+const createComment = async (req, res) => {
     try {
         const comment = new Comment(req.body);
         const savedComment = await comment.save();
@@ -25,7 +25,7 @@ export const createComment = async (req, res) => {
 
 
 // Get a comment by id
-export const getOneComment = async (req, res) => {
+const getOneComment = async (req, res) => {
     try {
         const { id } = req.params;
         const comment = await Comment.findById(id);
@@ -37,7 +37,7 @@ export const getOneComment = async (req, res) => {
 
 
 // Update a comment by id
-export const updateComment = async (req, res) => {
+const updateComment = async (req, res) => {
     try{
         const { id } = req.params;
         const comment = await Comment.findById(id);
@@ -49,15 +49,14 @@ export const updateComment = async (req, res) => {
         if (date) comment.date = date;
         await comment.save();
         res.json(comment);
-    }
-    catch(error){
+    } catch (error) {
         res.status(500).json({ error: error.message });
     }
 };
 
 
 // Delete a comment by id
-export const deleteComment = async (req, res) => {
+const deleteComment = async (req, res) => {
     try{
         const { id } = req.params;
         const comment = await Comment.findById(id);
@@ -72,3 +71,10 @@ export const deleteComment = async (req, res) => {
     }
 };
 
+module.exports = {
+    getAllComments,
+    createComment,
+    getOneComment,
+    updateComment,
+    deleteComment
+  };

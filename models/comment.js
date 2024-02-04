@@ -1,6 +1,4 @@
-// Purpose: Define the comment schema and export the model.
-
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 const { Schema, model } = mongoose;
 
 const commentSchema = new Schema({
@@ -9,6 +7,6 @@ const commentSchema = new Schema({
     movie_id: String,
     text: String,
     date: Date,
-    });
+});
 
-export default model('Comment', commentSchema);
+module.exports = model('Comment', commentSchema);
